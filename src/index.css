@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * AIESEC brand system (Blue Book) mapped to Tailwind v4 theme tokens.
+ * Utilities generated: bg-aiesec, text-ink, border-mist, etc.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-aiesec: #037ef3; /* primary blue — anchor, CTAs, focus */
+  --color-aiesec-600: #0267ca;
+  --color-aiesec-700: #0257b8;
+  --color-sunset: #f85a40; /* single warm accent, used sparingly */
+  --color-jade: #00c16e; /* success */
+  --color-golden: #ffc845; /* small highlights */
+  --color-grape: #7552cc; /* rare tertiary */
+  --color-ink: #0a2540; /* near-black navy text */
+  --color-slateink: #52565e; /* secondary text */
+  --color-mist: #f4f7fb; /* section wash */
+  --color-hairline: #e4ebf3; /* subtle borders */
+
+  --font-sans: "Lato", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --radius-xl2: 1.25rem;
+
+  --shadow-soft: 0 1px 2px rgba(10, 37, 64, 0.04), 0 12px 32px -12px rgba(10, 37, 64, 0.12);
+  --shadow-lift: 0 2px 6px rgba(10, 37, 64, 0.06), 0 24px 48px -20px rgba(3, 126, 243, 0.28);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-aiesec) 22%, transparent);
+    color: var(--color-ink);
+  }
+
+  /* Consistent, on-brand focus ring for keyboard users. */
+  :where(a, button, input, select, textarea):focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--color-aiesec) 55%, transparent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Editorial display wordmark used for the AIESEC logotype fallback. */
+  .wordmark {
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    text-transform: lowercase;
+  }
+
+  /* Thin uppercase eyebrow label. */
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-weight: 700;
+    font-size: 0.72rem;
+  }
+
+  /* Duotone treatment so any real photo reads as on-brand, never stocky. */
+  .duotone {
+    filter: grayscale(1) contrast(1.05);
+  }
+}
