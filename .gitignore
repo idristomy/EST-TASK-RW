@@ -30,3 +30,7 @@ design-assets
 *.njsproj
 *.sln
 *.sw?
+
+# Project-internal — kept local, never published to the public repo / deploy
+CLAUDE.md
+google-apps-script/
