@@ -40,8 +40,17 @@ export async function submitApplication(
 
     // Apps Script returns JSON like { ok: true }. Be tolerant if parsing fails.
     try {
-      const data = (await response.json()) as { ok?: boolean };
+      const data = (await response.json()) as {
+        ok?: boolean;
+        duplicate?: boolean;
+      };
       if (data && data.ok === false) {
+        if (data.duplicate) {
+          return {
+            ok: false,
+            error: "This email or phone number has already been used to apply.",
+          };
+        }
         return { ok: false, error: "The server couldn’t save your application." };
       }
     } catch {
